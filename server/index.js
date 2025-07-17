@@ -29,7 +29,16 @@ mongoose.connection.on('error', (error) => {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const allowedOrigins = [
+  'https://www.het-patel.tech',
+  'https://het-patel.tech',
+  'https://het-patel-portfolio.vercel.app'
+];
+
+app.use(cors({ 
+  origin: allowedOrigins,
+  credentials: true 
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
