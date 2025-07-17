@@ -34,6 +34,9 @@ const allowedOrigins = process.env.FRONTEND_URL
   ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
   : [];
 
+console.log('FRONTEND_URL environment variable:', process.env.FRONTEND_URL);
+console.log('Allowed CORS origins:', allowedOrigins);
+
 app.use(cors({ 
   origin: allowedOrigins,
   credentials: true 
