@@ -6,14 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    // Proxy disabled to test CORS restrictions
-    // proxy: {
-    //   '/api': {
-    //     target: 'https://portfolio-3y40.onrender.com',
-    //     changeOrigin: true,
-    //     secure: false,
-    //   }
-    // }
+    proxy: {
+      '/api': {
+        target: 'https://portfolio-3y40.onrender.com',
+        changeOrigin: true,
+        secure: true,
+      }
+    }
   },
   build: {
     outDir: 'dist',

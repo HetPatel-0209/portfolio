@@ -29,7 +29,10 @@ mongoose.connection.on('error', (error) => {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const allowedOrigins = process.env.FRONTEND_URL;
+// Handle multiple frontend URLs from environment variable
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
+  : [];
 
 app.use(cors({ 
   origin: allowedOrigins,
