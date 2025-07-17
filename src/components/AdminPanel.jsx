@@ -16,7 +16,7 @@ const AdminPanel = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const ADMIN_PASSWORD = 'admin123'; // In production, use environment variables
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
   useEffect(() => {
     if (isAuthenticated) {
