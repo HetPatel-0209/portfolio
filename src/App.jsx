@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -12,35 +13,42 @@ import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import './App.css';
 
+// Main Portfolio Component
+const Portfolio = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+  >
+    <Navbar />
+    <Hero />
+    <About />
+    <Skills />
+    <Projects />
+    <Experience />
+    <Certifications />
+    <Contact />
+    <Footer />
+  </motion.div>
+);
+
+// Secret Admin Route Component
+const SecretAdminRoute = () => (
+  <div className="min-h-screen bg-gray-100">
+    <AdminPanel onClose={() => window.history.back()} />
+  </div>
+);
+
 function App() {
-  const [showAdmin, setShowAdmin] = useState(false);
-
-  const toggleAdmin = () => {
-    setShowAdmin(!showAdmin);
-  };
-
   return (
     <div className="App scroll-smooth overflow-x-hidden">
-      <Navbar toggleAdmin={toggleAdmin} />
-      
-      {showAdmin ? (
-        <AdminPanel onClose={() => setShowAdmin(false)} />
-      ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Certifications />
-          <Contact />
-          <Footer />
-        </motion.div>
-      )}
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        {/* Secret admin route - only you know this path */}
+        <Route path="/unexplored" element={<SecretAdminRoute />} />
+        {/* Fallback route */}
+        <Route path="*" element={<Portfolio />} />
+      </Routes>
     </div>
   );
 }

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser } from 'react-icons/fa';
 
-const Navbar = ({ toggleAdmin }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -28,7 +27,21 @@ const Navbar = ({ toggleAdmin }) => {
 
   const handleMenuClick = (href) => {
     setIsOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    
+    // Add a small delay to allow menu closing animation to start
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        // Calculate offset for fixed navbar
+        const navbarHeight = 80; // Approximate navbar height
+        const elementPosition = element.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -66,14 +79,6 @@ const Navbar = ({ toggleAdmin }) => {
                   {item.name}
                 </button>
               ))}
-              <button
-                onClick={toggleAdmin}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 hover:text-blue-600 flex items-center ${
-                  scrolled ? 'text-gray-900' : 'text-white'
-                }`}
-              >
-                <FaUser />
-              </button>
             </div>
           </div>
 
@@ -142,24 +147,11 @@ const Navbar = ({ toggleAdmin }) => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   onClick={() => handleMenuClick(item.href)}
-                  className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+                  className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 active:bg-blue-100"
                 >
                   {item.name}
                 </motion.button>
               ))}
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
-                onClick={() => {
-                  setIsOpen(false);
-                  toggleAdmin();
-                }}
-                className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
-              >
-                <FaUser className="inline mr-2" />
-                Admin
-              </motion.button>
             </div>
           </motion.div>
         )}

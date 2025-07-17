@@ -5,44 +5,39 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
-// Import models
 import { Project, Experience, Certification } from './models/index.js';
 
 dotenv.config();
 
-// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('✅ Connected to MongoDB successfully');
+    console.log('Connected to MongoDB successfully');
   })
   .catch((error) => {
-    console.error('❌ MongoDB connection error:', error);
+    console.error('MongoDB connection error:', error);
     process.exit(1);
   });
 
-// Handle MongoDB connection events
 mongoose.connection.on('disconnected', () => {
-  console.log('⚠️ MongoDB disconnected');
+  console.log('MongoDB disconnected');
 });
 
 mongoose.connection.on('error', (error) => {
-  console.error('❌ MongoDB error:', error);
+  console.error('MongoDB error:', error);
 });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Configure nodemailer
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   host: 'smtp.gmail.com',
   port: 587,
-  secure: false, // true for 465, false for other ports
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
@@ -52,24 +47,19 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Verify transporter configuration
 transporter.verify((error, success) => {
   if (error) {
     console.log('Email transporter verification failed:', error);
   }
 });
 
-// Routes
-
-// Health check
 app.get('/', (req, res) => {
   res.json({ message: 'Het Patel Portfolio API is running!' });
 });
 
-// Get all projects
 app.get('/api/projects', async (req, res) => {
   try {
-    const projects = await Project.find().sort({ createdAt: -1 });
+    const projects = await Project.find().sort({ createdAt: 1 });
     res.json(projects);
   } catch (error) {
     console.error('Error fetching projects:', error);
@@ -77,29 +67,10 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-// Get single project by ID
-app.get('/api/projects/:id', async (req, res) => {
-  try {
-    const project = await Project.findById(req.params.id);
-    if (!project) {
-      return res.status(404).json({ message: 'Project not found' });
-    }
-    res.json(project);
-  } catch (error) {
-    console.error('Error fetching project:', error);
-    if (error.name === 'CastError') {
-      return res.status(400).json({ message: 'Invalid project ID format' });
-    }
-    res.status(500).json({ message: 'Error fetching project', error: error.message });
-  }
-});
-
-// Create new project
 app.post('/api/projects', async (req, res) => {
   try {
     const { category, title, description, technologies, githubUrl, projectUrl } = req.body;
     
-    // Validation
     if (!category || !title || !description || !technologies || !Array.isArray(technologies)) {
       return res.status(400).json({ 
         message: 'Missing required fields: category, title, description, and technologies (array)' 
@@ -129,7 +100,6 @@ app.post('/api/projects', async (req, res) => {
   }
 });
 
-// Update project by ID
 app.put('/api/projects/:id', async (req, res) => {
   try {
     const { category, title, description, technologies, githubUrl, projectUrl } = req.body;
@@ -170,7 +140,6 @@ app.put('/api/projects/:id', async (req, res) => {
   }
 });
 
-// Delete project by ID
 app.delete('/api/projects/:id', async (req, res) => {
   try {
     const deletedProject = await Project.findByIdAndDelete(req.params.id);
@@ -192,24 +161,6 @@ app.delete('/api/projects/:id', async (req, res) => {
   }
 });
 
-// Get projects by category
-app.get('/api/projects/category/:category', async (req, res) => {
-  try {
-    const category = req.params.category;
-    const projects = await Project.find({ 
-      category: { $regex: new RegExp(category, 'i') } 
-    }).sort({ createdAt: -1 });
-    
-    res.json(projects);
-  } catch (error) {
-    console.error('Error fetching projects by category:', error);
-    res.status(500).json({ message: 'Error fetching projects by category', error: error.message });
-  }
-});
-
-// ==================== EXPERIENCE ROUTES ====================
-
-// Get all experiences
 app.get('/api/experiences', async (req, res) => {
   try {
     const experiences = await Experience.find().sort({ createdAt: -1 });
@@ -220,29 +171,10 @@ app.get('/api/experiences', async (req, res) => {
   }
 });
 
-// Get single experience by ID
-app.get('/api/experiences/:id', async (req, res) => {
-  try {
-    const experience = await Experience.findById(req.params.id);
-    if (!experience) {
-      return res.status(404).json({ message: 'Experience not found' });
-    }
-    res.json(experience);
-  } catch (error) {
-    console.error('Error fetching experience:', error);
-    if (error.name === 'CastError') {
-      return res.status(400).json({ message: 'Invalid experience ID format' });
-    }
-    res.status(500).json({ message: 'Error fetching experience', error: error.message });
-  }
-});
-
-// Create new experience
 app.post('/api/experiences', async (req, res) => {
   try {
     const { title, company, location, startDate, endDate, description, technologies, achievements } = req.body;
     
-    // Validation
     if (!title || !company || !location || !startDate || !description) {
       return res.status(400).json({ 
         message: 'Missing required fields: title, company, location, startDate, and description' 
@@ -274,7 +206,6 @@ app.post('/api/experiences', async (req, res) => {
   }
 });
 
-// Update experience by ID
 app.put('/api/experiences/:id', async (req, res) => {
   try {
     const { title, company, location, startDate, endDate, description, technologies, achievements } = req.body;
@@ -319,7 +250,6 @@ app.put('/api/experiences/:id', async (req, res) => {
   }
 });
 
-// Delete experience by ID
 app.delete('/api/experiences/:id', async (req, res) => {
   try {
     const deletedExperience = await Experience.findByIdAndDelete(req.params.id);
@@ -341,9 +271,6 @@ app.delete('/api/experiences/:id', async (req, res) => {
   }
 });
 
-// ==================== CERTIFICATION ROUTES ====================
-
-// Get all certifications
 app.get('/api/certifications', async (req, res) => {
   try {
     const certifications = await Certification.find().sort({ createdAt: -1 });
@@ -354,24 +281,6 @@ app.get('/api/certifications', async (req, res) => {
   }
 });
 
-// Get single certification by ID
-app.get('/api/certifications/:id', async (req, res) => {
-  try {
-    const certification = await Certification.findById(req.params.id);
-    if (!certification) {
-      return res.status(404).json({ message: 'Certification not found' });
-    }
-    res.json(certification);
-  } catch (error) {
-    console.error('Error fetching certification:', error);
-    if (error.name === 'CastError') {
-      return res.status(400).json({ message: 'Invalid certification ID format' });
-    }
-    res.status(500).json({ message: 'Error fetching certification', error: error.message });
-  }
-});
-
-// Create new certification
 app.post('/api/certifications', async (req, res) => {
   try {
     const { name, organization, verificationUrl, description, skills } = req.body;
@@ -405,7 +314,6 @@ app.post('/api/certifications', async (req, res) => {
   }
 });
 
-// Update certification by ID
 app.put('/api/certifications/:id', async (req, res) => {
   try {
     const { name, organization, verificationUrl, description, skills } = req.body;
@@ -445,7 +353,6 @@ app.put('/api/certifications/:id', async (req, res) => {
   }
 });
 
-// Delete certification by ID
 app.delete('/api/certifications/:id', async (req, res) => {
   try {
     const deletedCertification = await Certification.findByIdAndDelete(req.params.id);
@@ -467,7 +374,6 @@ app.delete('/api/certifications/:id', async (req, res) => {
   }
 });
 
-// Contact form endpoint
 app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
 
@@ -495,7 +401,6 @@ app.post('/api/contact', async (req, res) => {
   } catch (error) {
     console.error('Error sending email:', error);
     
-    // Provide more specific error messages
     if (error.code === 'EAUTH') {
       res.status(500).json({ 
         message: 'Email authentication failed. Please check your email configuration.',
@@ -515,29 +420,25 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
-// 404 handler
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// Start server only after MongoDB connection is established
 const startServer = async () => {
   try {
-    // Ensure MongoDB connection is ready
     await mongoose.connection.asPromise();
     
     app.listen(PORT, () => {
-      console.log(`🚀 Server is running on port ${PORT}`);
-      console.log(`📊 MongoDB connection status: ${mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'}`);
+      console.log(`Server is running`);
+      console.log(`MongoDB connection status: ${mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'}`);
     });
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    console.error('Failed to start server:', error);
     process.exit(1);
   }
 };

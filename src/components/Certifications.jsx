@@ -1,87 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaCertificate, FaExternalLinkAlt, FaCalendarAlt, FaAward } from 'react-icons/fa';
+import { FaCertificate, FaExternalLinkAlt, FaAward } from 'react-icons/fa';
 import { certificationsAPI } from '../api/index.js';
 
 const Certifications = () => {
   const [certifications, setCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Default certifications data
-  const defaultCertifications = [
-    {
-      id: 1,
-      name: "AWS Certified Solutions Architect",
-      organization: "Amazon Web Services",
-      issueDate: "2023-08-15",
-      expiryDate: "2026-08-15",
-      credentialId: "AWS-CSA-2023-001",
-      verificationUrl: "https://aws.amazon.com/certification/verify",
-      description: "Demonstrates expertise in designing distributed systems on AWS platform",
-      skills: ["Cloud Architecture", "AWS Services", "Security", "Scalability"],
-      logo: "aws-logo.png"
-    },
-    {
-      id: 2,
-      name: "MongoDB Certified Developer",
-      organization: "MongoDB Inc.",
-      issueDate: "2023-06-20",
-      expiryDate: "2025-06-20",
-      credentialId: "MDB-DEV-2023-002",
-      verificationUrl: "https://university.mongodb.com/certification/verify",
-      description: "Validates skills in MongoDB development and database design",
-      skills: ["MongoDB", "Database Design", "Aggregation", "Indexing"],
-      logo: "mongodb-logo.png"
-    },
-    {
-      id: 3,
-      name: "Docker Certified Associate",
-      organization: "Docker Inc.",
-      issueDate: "2023-04-10",
-      expiryDate: "2025-04-10",
-      credentialId: "DCA-2023-003",
-      verificationUrl: "https://training.docker.com/certification/verify",
-      description: "Demonstrates proficiency in containerization and Docker ecosystem",
-      skills: ["Docker", "Containerization", "Orchestration", "DevOps"],
-      logo: "docker-logo.png"
-    },
-    {
-      id: 4,
-      name: "Kubernetes Administrator (CKA)",
-      organization: "Cloud Native Computing Foundation",
-      issueDate: "2023-02-28",
-      expiryDate: "2026-02-28",
-      credentialId: "CKA-2023-004",
-      verificationUrl: "https://training.linuxfoundation.org/certification/verify",
-      description: "Validates skills in Kubernetes administration and cluster management",
-      skills: ["Kubernetes", "Cluster Management", "Networking", "Security"],
-      logo: "kubernetes-logo.png"
-    },
-    {
-      id: 5,
-      name: "Oracle Certified Professional, Java SE",
-      organization: "Oracle Corporation",
-      issueDate: "2022-11-15",
-      expiryDate: null,
-      credentialId: "OCP-JAVA-2022-005",
-      verificationUrl: "https://education.oracle.com/certification/verify",
-      description: "Demonstrates advanced Java programming skills and best practices",
-      skills: ["Java", "OOP", "Collections", "Concurrency"],
-      logo: "oracle-logo.png"
-    },
-    {
-      id: 6,
-      name: "Google Cloud Professional Developer",
-      organization: "Google Cloud",
-      issueDate: "2022-09-20",
-      expiryDate: "2024-09-20",
-      credentialId: "GCP-PD-2022-006",
-      verificationUrl: "https://cloud.google.com/certification/verify",
-      description: "Validates expertise in developing applications on Google Cloud Platform",
-      skills: ["Google Cloud", "App Engine", "Cloud Functions", "APIs"],
-      logo: "gcp-logo.png"
-    }
-  ];
 
   useEffect(() => {
     fetchCertifications();
@@ -95,7 +19,7 @@ const Certifications = () => {
     } catch (error) {
       console.error('Error fetching certifications:', error);
       // Use default certifications if API is not available
-      setCertifications(defaultCertifications);
+      setCertifications([]);
     } finally {
       setLoading(false);
     }

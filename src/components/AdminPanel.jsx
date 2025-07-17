@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaTimes, FaPlus, FaEdit, FaTrash, FaSave, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { projectsAPI, experiencesAPI, certificationsAPI } from '../api/index.js';
 
 const AdminPanel = ({ onClose }) => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('projects');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -154,7 +156,7 @@ const AdminPanel = ({ onClose }) => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-900">Admin Login</h2>
             <button
-              onClick={onClose}
+              onClick={() => navigate('/')}
               className="text-gray-400 hover:text-gray-600"
             >
               <FaTimes size={24} />
@@ -208,7 +210,7 @@ const AdminPanel = ({ onClose }) => {
         <div className="bg-gray-900 text-white p-6 flex justify-between items-center">
           <h2 className="text-2xl font-bold">Admin Panel</h2>
           <button
-            onClick={onClose}
+            onClick={() => navigate('/')}
             className="text-gray-400 hover:text-white"
           >
             <FaTimes size={24} />
