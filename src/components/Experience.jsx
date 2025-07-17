@@ -7,83 +7,16 @@ const Experience = () => {
   const [experiences, setExperiences] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Default experience data
-  const defaultExperiences = [
-    {
-      id: 1,
-      title: "Senior Backend Developer",
-      company: "Tech Solutions Inc.",
-      location: "Anand, Gujarat",
-      startDate: "2022-01",
-      endDate: "present",
-      description: "Led backend development for enterprise applications, designed microservices architecture, and optimized database performance. Managed a team of 5 developers and implemented CI/CD pipelines.",
-      technologies: ["Node.js", "MongoDB", "AWS", "Docker", "Kubernetes"],
-      achievements: [
-        "Improved API response time by 40%",
-        "Led migration to microservices architecture",
-        "Implemented automated testing reducing bugs by 60%"
-      ]
-    },
-    {
-      id: 2,
-      title: "Backend Developer",
-      company: "StartupXYZ",
-      location: "Austin, TX",
-      startDate: "2020-03",
-      endDate: "2021-12",
-      description: "Developed RESTful APIs for mobile and web applications, integrated third-party services, and maintained database systems. Collaborated with frontend team to deliver seamless user experiences.",
-      technologies: ["Python", "Django", "PostgreSQL", "Redis", "AWS"],
-      achievements: [
-        "Built scalable API serving 1M+ requests daily",
-        "Integrated payment systems and notifications",
-        "Reduced server costs by 30% through optimization"
-      ]
-    },
-    {
-      id: 3,
-      title: "Junior Backend Developer",
-      company: "WebDev Agency",
-      location: "Remote",
-      startDate: "2019-06",
-      endDate: "2020-02",
-      description: "Worked on various client projects, developing custom web applications and APIs. Gained experience with different technologies and frameworks while working in an agile environment.",
-      technologies: ["PHP", "MySQL", "Laravel", "JavaScript", "jQuery"],
-      achievements: [
-        "Delivered 15+ client projects successfully",
-        "Learned and adapted to new technologies quickly",
-        "Received positive feedback from clients"
-      ]
-    },
-    {
-      id: 4,
-      title: "Backend Developer Intern",
-      company: "Innovation Labs",
-      location: "New York, NY",
-      startDate: "2018-09",
-      endDate: "2019-05",
-      description: "Assisted in developing internal tools and APIs, learned best practices in software development, and contributed to code reviews. Gained hands-on experience with modern development practices.",
-      technologies: ["Java", "Spring Boot", "MySQL", "Git", "Maven"],
-      achievements: [
-        "Developed internal dashboard for project tracking",
-        "Contributed to code review process",
-        "Completed training in agile methodologies"
-      ]
-    }
-  ];
-
   useEffect(() => {
     fetchExperiences();
   }, []);
 
   const fetchExperiences = async () => {
     try {
-      // Fetch from API using the new API configuration
       const response = await experiencesAPI.getAll();
       setExperiences(response.data);
     } catch (error) {
       console.error('Error fetching experiences:', error);
-      // Use default experiences if API is not available
-      setExperiences(defaultExperiences);
     } finally {
       setLoading(false);
     }
