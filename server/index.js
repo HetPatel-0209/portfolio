@@ -29,11 +29,7 @@ mongoose.connection.on('error', (error) => {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const allowedOrigins = [
-  'https://www.het-patel.tech',
-  'https://het-patel.tech',
-  'https://het-patel-portfolio.vercel.app'
-];
+const allowedOrigins = process.env.FRONTEND_URL;
 
 app.use(cors({ 
   origin: allowedOrigins,
