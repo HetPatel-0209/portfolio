@@ -69,12 +69,12 @@ const Contact = () => {
       icon: FaGithub,
       name: 'GitHub',
       url: 'https://github.com/HetPatel-0209',
-      color: 'text-gray-800'
+      color: 'text-gray-800 dark:text-white'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -83,9 +83,9 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
           </p>
         </motion.div>
@@ -100,24 +100,24 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Contact Information</h3>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-center space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                      <info.icon className="text-blue-600" />
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                      <info.icon className="text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{info.title}</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">{info.title}</p>
                       {info.link ? (
                         <a
                           href={info.link}
-                          className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+                          className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-600">{info.value}</p>
+                        <p className="text-gray-600 dark:text-gray-300">{info.value}</p>
                       )}
                     </div>
                   </div>
@@ -127,7 +127,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Connect With Me</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Connect With Me</h3>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
@@ -144,27 +144,27 @@ const Contact = () => {
             </div>
 
             {/* Additional Info */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Let's Work Together</h4>
-              <p className="text-gray-600 mb-4">
+            <div className="bg-gray-50  dark:bg-gray-800 rounded-lg p-6">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Let's Work Together</h4>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
                 I'm available for freelance projects, consulting, or full-time opportunities. 
                 Whether you need help with:
               </p>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">•</span>
+                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
                   Backend API development
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">•</span>
+                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
                   System architecture design
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">•</span>
+                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
                   Database optimization
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-600 mr-2">•</span>
+                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
                   Cloud infrastructure setup
                 </li>
               </ul>
@@ -178,13 +178,13 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="bg-gray-50 rounded-lg p-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Send Me a Message</h3>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 transition-colors duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Send Me a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Name *
                     </label>
                     <input
@@ -194,12 +194,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 ">
                       Email *
                     </label>
                     <input
@@ -209,14 +209,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Subject *
                   </label>
                   <input
@@ -226,13 +226,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                     placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -242,7 +242,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                     placeholder="Tell me about your project or idea..."
                   />
                 </div>

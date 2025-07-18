@@ -5,6 +5,7 @@ A modern, responsive portfolio website built with React, Vite, and Node.js. Feat
 ## Features
 
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
+- **Dark Mode**: Toggle between light and dark themes with smooth transitions
 - **Dynamic Content**: Add/edit experience and certifications through admin panel
 - **Resume Download**: One-click resume download functionality
 - **Contact Form**: Integrated contact form with email notifications using Nodemailer

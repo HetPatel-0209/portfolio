@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import DarkModeToggle from './DarkModeToggle';
+import { useDarkMode } from '../context/DarkModeContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { darkMode } = useDarkMode();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,18 +54,23 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 navbar-transition ${
         scrolled 
-          ? 'bg-white shadow-lg' 
+          ? darkMode ? 'bg-gray-900 shadow-lg' : 'bg-white shadow-lg' 
           : 'navbar-glass rounded-3xl mx-4 mt-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <h1 className={`text-xl sm:text-2xl font-bold font-bricolage navbar-artistic-name transition-colors duration-300 ${
-              scrolled ? 'scrolled text-gray-900' : 'text-white'
+            <h1 className={`text-xl sm:text-2xl font-bold font-bricolage transition-colors duration-300 ${
+              scrolled ? (darkMode ? 'scrolled text-white' : 'scrolled text-gray-900') : 'text-white'
             }`}>
               Het Patel
             </h1>
+          </div>
+
+          {/* Dark Mode Toggle */}
+          <div className="ml-4">
+            <DarkModeToggle />
           </div>
 
           {/* Desktop Menu */}
@@ -73,7 +81,9 @@ const Navbar = () => {
                   key={item.name}
                   onClick={() => handleMenuClick(item.href)}
                   className={`px-3 py-2 rounded-md text-lg font-medium transition-colors duration-300 hover:text-blue-600 ${
-                    scrolled ? 'text-gray-900' : 'text-white'
+                    scrolled 
+                      ? (darkMode ? 'text-white' : 'text-gray-900') 
+                      : 'text-white'
                   }`}
                 >
                   {item.name}
@@ -87,8 +97,10 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className={`relative inline-flex items-center justify-center p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 ${
-                scrolled ? 'text-gray-900' : 'text-white hover:bg-white/10'
+              className={`relative inline-flex items-center justify-center p-2 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 ${
+                scrolled 
+                  ? (darkMode ? 'text-white hover:bg-gray-800' : 'text-gray-900 hover:bg-gray-100') 
+                  : 'text-white hover:bg-white/10'
               }`}
             >
               <span className="sr-only">Open main menu</span>
@@ -102,7 +114,9 @@ const Navbar = () => {
                     open: { rotate: 45, y: 6 }
                   }}
                   className={`block h-0.5 w-6 rounded-full transition-all duration-300 ${
-                    scrolled ? 'bg-gray-900' : 'bg-white'
+                    scrolled 
+                      ? (darkMode ? 'bg-white' : 'bg-gray-900') 
+                      : 'bg-white'
                   }`}
                 />
                 <motion.span
@@ -111,7 +125,9 @@ const Navbar = () => {
                     open: { opacity: 0 }
                   }}
                   className={`block h-0.5 w-6 rounded-full mt-1.5 transition-all duration-300 ${
-                    scrolled ? 'bg-gray-900' : 'bg-white'
+                    scrolled 
+                      ? (darkMode ? 'bg-white' : 'bg-gray-900') 
+                      : 'bg-white'
                   }`}
                 />
                 <motion.span
@@ -120,7 +136,9 @@ const Navbar = () => {
                     open: { rotate: -45, y: -6 }
                   }}
                   className={`block h-0.5 w-6 rounded-full mt-1.5 transition-all duration-300 ${
-                    scrolled ? 'bg-gray-900' : 'bg-white'
+                    scrolled 
+                      ? (darkMode ? 'bg-white' : 'bg-gray-900') 
+                      : 'bg-white'
                   }`}
                 />
               </motion.div>
@@ -137,7 +155,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white shadow-lg border-t border-gray-100 overflow-hidden"
+            className="md:hidden bg-white dark:bg-gray-800 shadow-lg border-t border-gray-100 dark:border-gray-700 overflow-hidden"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
               {menuItems.map((item, index) => (
@@ -147,7 +165,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   onClick={() => handleMenuClick(item.href)}
-                  className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-900 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 active:bg-blue-100"
+                  className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-200 active:bg-blue-100 dark:active:bg-blue-800/40"
                 >
                   {item.name}
                 </motion.button>

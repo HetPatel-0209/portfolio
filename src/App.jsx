@@ -11,6 +11,7 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
+import { DarkModeProvider } from './context/DarkModeContext';
 import './App.css';
 
 // Main Portfolio Component
@@ -41,15 +42,17 @@ const SecretAdminRoute = () => (
 
 function App() {
   return (
-    <div className="App scroll-smooth overflow-x-hidden">
-      <Routes>
-        <Route path="/" element={<Portfolio />} />
-        {/* Secret admin route - only you know this path */}
-        <Route path="/unexplored" element={<SecretAdminRoute />} />
-        {/* Fallback route */}
-        <Route path="*" element={<Portfolio />} />
-      </Routes>
-    </div>
+    <DarkModeProvider>
+      <div className="App scroll-smooth overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+          {/* Secret admin route - only you know this path */}
+          <Route path="/unexplored" element={<SecretAdminRoute />} />
+          {/* Fallback route */}
+          <Route path="*" element={<Portfolio />} />
+        </Routes>
+      </div>
+    </DarkModeProvider>
   );
 }
 

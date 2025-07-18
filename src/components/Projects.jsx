@@ -45,11 +45,11 @@ const Projects = () => {
 
   if (loading) {
     return (
-      <section id="projects" className="py-20 bg-gray-50">
+      <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading projects...</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-300">Loading projects...</p>
           </div>
         </div>
       </section>
@@ -57,7 +57,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,9 +66,9 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">My Projects</h2>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">My Projects</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Here are some of the projects I've worked on. Each project demonstrates different aspects of backend development and system architecture.
           </p>
         </motion.div>
@@ -84,7 +84,7 @@ const Projects = () => {
             <motion.div
               key={project._id || project.id}
               variants={itemVariants}
-              className="bg-white rounded-lg shadow-lg overflow-hidden card-hover"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover transition-colors duration-300"
             >
               <div className="h-20 bg-blue-600 flex items-center justify-center">
                 <div className="text-white text-center">
@@ -93,10 +93,10 @@ const Projects = () => {
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
                   {project.description}
                 </p>
                 
@@ -104,7 +104,7 @@ const Projects = () => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
                     >
                       {tech}
                     </span>
@@ -141,7 +141,7 @@ const Projects = () => {
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                  <span className="text-xs text-gray-500 dark:text-gray-200 bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">
                     {project.category}
                   </span>
                 </div>

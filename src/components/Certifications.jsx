@@ -59,11 +59,11 @@ const Certifications = () => {
 
   if (loading) {
     return (
-      <section id="certifications" className="py-20 bg-gray-50">
+      <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading certifications...</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-300">Loading certifications...</p>
           </div>
         </div>
       </section>
@@ -71,7 +71,7 @@ const Certifications = () => {
   }
 
   return (
-    <section id="certifications" className="py-20 bg-gray-50">
+    <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -80,9 +80,9 @@ const Certifications = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Certifications</h2>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Certifications</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Professional certifications that validate my expertise in various technologies and platforms
           </p>
         </motion.div>
@@ -98,7 +98,7 @@ const Certifications = () => {
             <motion.div
               key={cert.id}
               variants={itemVariants}
-              className="bg-white rounded-lg shadow-lg overflow-hidden card-hover"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden card-hover transition-colors duration-300"
             >
               {/* Certificate Header */}
               <div className="bg-blue-600 p-6 text-white">
@@ -111,16 +111,16 @@ const Certifications = () => {
 
               {/* Certificate Body */}
               <div className="p-6">
-                <p className="text-gray-600 mb-4 text-sm">{cert.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">{cert.description}</p>
 
                 {/* Skills */}
                 <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 mb-2 text-sm">Skills Gained:</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Skills Gained:</h4>
                   <div className="flex flex-wrap gap-2">
                     {cert.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
                       >
                         {skill}
                       </span>
@@ -134,12 +134,12 @@ const Certifications = () => {
                     href={cert.verificationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium"
+                    className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
                   >
                     <FaExternalLinkAlt className="mr-2" />
                     Verify Certificate
                   </a>
-                  <FaAward className="text-gray-400" />
+                  <FaAward className="text-gray-400 dark:text-gray-500" />
                 </div>
               </div>
             </motion.div>
