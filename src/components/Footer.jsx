@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -140,7 +140,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm text-center md:text-left">
               <p className="flex items-center justify-center md:justify-start">
-                ©{currentYear} Het Patel. Made with <FaHeart className="text-red-500 mx-1" size={12} />, lots of coffee and Co-Pilot
+                ©{currentYear} Het Patel. Made with Sleepless nights, lots of coffee and Co-Pilot
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-end space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-gray-400">
@@ -150,23 +150,9 @@ const Footer = () => {
               >
                 Back to Top
               </button>
-              <a
-                href="/privacy-policy"
-                className="hover:text-white transition-colors duration-300"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms-of-service"
-                className="hover:text-white transition-colors duration-300"
-              >
-                Terms of Service
-              </a>
             </div>
           </div>
         </motion.div>
-
-        {/* Scroll to Top Indicator */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}

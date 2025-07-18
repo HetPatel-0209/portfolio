@@ -96,7 +96,7 @@ const Hero = () => {
 
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(isMobile ? 75 : 150)].map((_, i) => (
+        {[...Array(isMobile ? 65 : 150)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-white rounded-full opacity-20"
