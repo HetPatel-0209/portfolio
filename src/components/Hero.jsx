@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const handleDownloadResume = () => {
     // Create a link to download the resume
     const link = document.createElement('a');
@@ -25,10 +38,10 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-display">
-              Hi, I'm <span className="font-bricolage text-yellow-500">Het Patel</span>
+            <h1 className="text-5xl md:text-7xl text-white mb-6 font-display">
+              Hi, I'm <span className="font-bricolage font-bold text-yellow-500">Het Patel</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl sm:text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
               Backend Developer passionate about building scalable web applications 
               and crafting efficient server-side solutions
             </p>
@@ -83,7 +96,7 @@ const Hero = () => {
 
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(150)].map((_, i) => (
+        {[...Array(isMobile ? 75 : 150)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-white rounded-full opacity-20"

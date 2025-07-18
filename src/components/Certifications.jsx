@@ -101,7 +101,7 @@ const Certifications = () => {
               className="bg-white rounded-lg shadow-lg overflow-hidden card-hover"
             >
               {/* Certificate Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+              <div className="bg-blue-600 p-6 text-white">
                 <div className="flex items-center justify-between mb-4">
                   <FaCertificate size={32} />
                 </div>
@@ -144,34 +144,6 @@ const Certifications = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          <div className="text-center">
-            <div className="text-4xl font-bold text-blue-600 mb-2">
-              {certifications.length}
-            </div>
-            <p className="text-gray-600">Total Certifications</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-600 mb-2">
-              {certifications.filter(cert => !isExpired(cert.expiryDate)).length}
-            </div>
-            <p className="text-gray-600">Active Certifications</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-purple-600 mb-2">
-              {new Set(certifications.flatMap(cert => cert.skills)).size}
-            </div>
-            <p className="text-gray-600">Skills Gained</p>
-          </div>
         </motion.div>
       </div>
     </section>

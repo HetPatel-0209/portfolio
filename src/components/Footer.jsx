@@ -54,8 +54,8 @@ const Footer = () => {
           >
             <h3 className="text-2xl font-bold mb-4">Het Patel</h3>
             <p className="text-gray-400 mb-6 max-w-md">
-              Backend Developer passionate about building scalable web applications 
-              and crafting efficient server-side solutions. Always learning and 
+              Backend Developer passionate about building scalable web applications
+              and crafting efficient server-side solutions. Always learning and
               exploring new technologies.
             </p>
             <div className="flex space-x-4">
@@ -107,7 +107,7 @@ const Footer = () => {
             <div className="space-y-3 text-gray-400">
               <p>
                 <span className="font-medium">Email:</span><br />
-                <a 
+                <a
                   href="mailto:hetptl09104@gmail.com"
                   className="hover:text-white transition-colors duration-300"
                 >
@@ -116,7 +116,7 @@ const Footer = () => {
               </p>
               <p>
                 <span className="font-medium">Phone:</span><br />
-                <a 
+                <a
                   href="tel:+919099187329"
                   className="hover:text-white transition-colors duration-300"
                 >
@@ -130,8 +130,6 @@ const Footer = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -139,15 +137,13 @@ const Footer = () => {
           viewport={{ once: true }}
           className="border-t border-gray-800 py-6"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              <p className="flex items-center">
-                © {currentYear} Het Patel. Made with{' '}
-                <FaHeart className="text-red-500 mx-1" size={12} />{' '}
-                ,lots of coffee and Co-Pilot
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
+            <div className="text-gray-400 text-sm text-center md:text-left">
+              <p className="flex items-center justify-center md:justify-start">
+                ©{currentYear} Het Patel. Made with <FaHeart className="text-red-500 mx-1" size={12} />, lots of coffee and Co-Pilot
               </p>
             </div>
-            <div className="flex space-x-6 text-sm text-gray-400">
+            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-end space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-gray-400">
               <button
                 onClick={() => handleLinkClick('#home')}
                 className="hover:text-white transition-colors duration-300"

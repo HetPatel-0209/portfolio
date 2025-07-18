@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaDatabase, FaServer } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { projectsAPI } from '../api/index.js';
 
 const Projects = () => {
@@ -86,10 +86,9 @@ const Projects = () => {
               variants={itemVariants}
               className="bg-white rounded-lg shadow-lg overflow-hidden card-hover"
             >
-              <div className="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+              <div className="h-20 bg-blue-600 flex items-center justify-center">
                 <div className="text-white text-center">
-                  <FaCode size={48} className="mx-auto mb-4" />
-                  <p className="text-sm font-medium">{project.category}</p>
+                  <p className="text-xl font-medium">{project.category}</p>
                 </div>
               </div>
               

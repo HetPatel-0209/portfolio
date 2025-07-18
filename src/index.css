@@ -28,11 +28,19 @@ body {
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* background: linear-gradient(135deg, #667eea 0%, #76b8f0 100%); */
+  /* background: linear-gradient(135deg, #232526 0%, #414345 100%); */
+  /* background: linear-gradient(135deg, #434343 0%, #00c6ff 100%); */
+  /* background: linear-gradient(135deg, #2C3E50 0%, #BDC3C7 100%); */
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* background: linear-gradient(135deg, #667eea 0%, #76b8f0 100%); */
+  /* background: linear-gradient(135deg, #232526 0%, #414345 100%); */
+  /* background: linear-gradient(135deg, #434343 0%, #00c6ff 100%); */
+  /* background: linear-gradient(135deg, #2C3E50 0%, #BDC3C7 100%); */
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
