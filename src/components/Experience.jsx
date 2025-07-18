@@ -23,8 +23,19 @@ const Experience = () => {
   };
 
   const formatDate = (dateString) => {
-    if (dateString === 'present') return 'Present';
+    if (!dateString || dateString.toLowerCase() === 'present') return 'Present';
+    
+    // If it's already a formatted string (like "25th May 2025"), return as is
+    if (typeof dateString === 'string' && dateString.includes(' ')) {
+      return dateString;
+    }
+    
+    // Otherwise, try to parse as a date
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return dateString; // Return original if parsing fails
+    }
+    
     return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
   };
 
