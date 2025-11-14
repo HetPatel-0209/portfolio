@@ -140,7 +140,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm text-center md:text-left">
               <p className="flex items-center justify-center md:justify-start">
-                ©{currentYear} Het Patel. Made with Sleepless nights, lots of coffee and Co-Pilot
+                ©{currentYear} Het Patel.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-end space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-gray-400">
